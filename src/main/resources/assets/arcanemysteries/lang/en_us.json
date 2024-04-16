@@ -1,0 +1,49 @@
+{
+  "message.failure_to_teleport": "You don't have a respawn Point",
+  "tooltip.teleport_respawn_point": "Teleports to the respawn point",
+  "tooltip.uses": "%s Uses Remaining",
+  "tooltip.healing": "Heals all your hearts",
+  "tooltip.levitation": "Lets you fly",
+  "tooltip.arcanemysteries.aquanium_fullset": "PLACEHOLDER",
+  "tooltip.arcanemysteries.enderium_fullset": "PLACEHOLDER",
+  "tooltip.arcanemysteries.firerite_fullset": "PLACEHOLDER",
+
+  "itemGroup.arcanemysteries.misc": "Arcane Mysteries: Misc",
+
+  "item.arcanemysteries.raw_enderium": "Raw Enderium",
+  "item.arcanemysteries.raw_luminite": "Raw Luminite",
+  "item.arcanemysteries.raw_platinum": "Raw Platinum",
+  "item.arcanemysteries.raw_silver": "Raw Silver",
+  "item.arcanemysteries.raw_titanium": "Raw Titanium",
+  "item.arcanemysteries.sulfur": "Sulfur",
+
+  "item.arcanemysteries.aquanium_nugget": "Aquanium Nugget",
+  "item.arcanemysteries.copper_nugget": "Copper Nugget",
+  "item.arcanemysteries.enderium_nugget": "Enderium Nugget",
+  "item.arcanemysteries.luminite_nugget": "Luminite Nugget",
+  "item.arcanemysteries.platinum_nugget": "Platinum Nugget",
+  "item.arcanemysteries.silver_nugget": "Silver Nugget",
+  "item.arcanemysteries.steel_nugget": "Steel Nugget",
+  "item.arcanemysteries.titanium_nugget": "Titanium Nugget",
+
+  "item.arcanemysteries.aquanium_ingot": "Aquanium Ingot",
+  "item.arcanemysteries.ender_ingot": "Ender Ingot",
+  "item.arcanemysteries.enderium_ingot": "Enderium Ingot",
+  "item.arcanemysteries.luminite_ingot": "Luminite Ingot",
+  "item.arcanemysteries.platinum_ingot": "Platinum Ingot",
+  "item.arcanemysteries.silver_ingot": "Silver Ingot",
+  "item.arcanemysteries.steel_ingot": "Steel Ingot",
+  "item.arcanemysteries.titanium_ingot": "Titanium Ingot",
+  "item.arcanemysteries.aluminium_ingot": "Aluminium Ingot",
+
+  "item.arcanemysteries.firerite_gem": "Firerite Gem",
+  "item.arcanemysteries.frozen_gem": "Frozen Gem",
+  "item.arcanemysteries.ruby": "Ruby",
+
+  "item.arcanemysteries.aquanium_shard": "Aquanium Shard",
+  "item.arcanemysteries.diamond_shard": "Diamond Shard",
+
+  "item.arcanemysteries.heal_staff": "Heal Staff",
+  "item.arcanemysteries.teleportation_staff": "Teleportation Staff",
+  "item.arcanemysteries.levitation_staff": "Levitation Staff"
+}
