@@ -3,6 +3,7 @@ package net.shadowbeast.arcanemysteries.registries;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.*;
 import net.shadowbeast.arcanemysteries.enums.ArmorStats;
+import net.shadowbeast.arcanemysteries.enums.ToolStats;
 import net.shadowbeast.arcanemysteries.items.*;
 import net.shadowbeast.arcanemysteries.items.armor.ArmorAquanium;
 import net.shadowbeast.arcanemysteries.items.armor.ArmorEnderium;
@@ -16,6 +17,9 @@ public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     public static final RegistryObject<Item>
             //MISC
+            titanium_saw_blade = registerItem("titanium_saw_blade", () -> new ItemSawBlade(new Item.Properties().stacksTo(1),28)), //Divide max by 9
+
+            //ORES
             raw_silver = registerItem("raw_silver"),
             raw_platinum = registerItem("raw_platinum"),
             raw_titanium = registerItem("raw_titanium"),
@@ -73,6 +77,12 @@ public class ItemRegistry {
             teleportation_staff = registerItem("teleportation_staff", ItemTeleportationStaff::new),
             levitation_staff = registerItem("levitation_staff", ItemLevitationStaff::new),
 
+            //HAMMERS
+            platinum_hammer = registerItem("platinum_hammer", () -> new ItemHammer(ToolStats.PLATINUM,6F,-3.4F, new Item.Properties().durability(1020))),
+            silver_hammer = registerItem("silver_hammer", () -> new ItemHammer(ToolStats.SILVER,5F,-3.4F, new Item.Properties().durability(420))),
+            steel_hammer = registerItem("steel_hammer", () -> new ItemHammer(ToolStats.STEEL,6F,-3.4F, new Item.Properties().durability(1654))),
+            titanium_hammer = registerItem("titanium_hammer", () -> new ItemHammer(ToolStats.TITANIUM,6F,-3.4F, new Item.Properties().durability(2240))),
+
             //ARMOR
             aquanium_helmet = registerItem("aquanium_helmet", () -> ArmorAquanium.getInstance(ArmorItem.Type.HELMET)),
                     aquanium_chestplate = registerItem("aquanium_chestplate", () -> ArmorAquanium.getInstance(ArmorItem.Type.CHESTPLATE)),
@@ -122,7 +132,70 @@ public class ItemRegistry {
             copper_helmet = registerItem("copper_helmet", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.HELMET)),
                     copper_chestplate = registerItem("copper_chestplate", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.CHESTPLATE)),
                     copper_leggings = registerItem("copper_leggings", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.LEGGINGS)),
-                    copper_boots = registerItem("copper_boots", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.BOOTS));
+                    copper_boots = registerItem("copper_boots", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.BOOTS)),
+
+            //SWORDS
+            aquanium_sword = registerItem("aquanium_sword", () -> new ItemModSword(ToolStats.AQUANIUM)),
+            enderium_sword = registerItem("enderium_sword", () -> new ItemModSword(ToolStats.ENDERIUM)),
+            luminite_sword = registerItem("luminite_sword", () -> new ItemModSword(ToolStats.LUMINITE)),
+            platinum_sword = registerItem("platinum_sword", () -> new ItemModSword(ToolStats.PLATINUM)),
+            silver_sword = registerItem("silver_sword", () -> new ItemModSword(ToolStats.SILVER)),
+            steel_sword = registerItem("steel_sword", () -> new ItemModSword(ToolStats.STEEL)),
+            titanium_sword = registerItem("titanium_sword", () -> new ItemModSword(ToolStats.TITANIUM)),
+            firerite_sword = registerItem("firerite_sword", () -> new ItemModSword(ToolStats.FIRERITE)),
+            frozen_sword = registerItem("frozen_sword", () -> new ItemModSword(ToolStats.FROZEN)),
+            copper_sword = registerItem("coppern_sword", () -> new ItemModSword(ToolStats.COPPER)),
+
+            //TOOLS
+            aquanium_shovel = registerItem("aquanium_shovel", () -> new ItemModShovel(ToolStats.AQUANIUM)),
+                    aquanium_pickaxe = registerItem("aquanium_pickaxe", () -> new ItemModPickaxe(ToolStats.AQUANIUM)),
+                    aquanium_axe = registerItem("aquanium_axe", () -> new ItemModAxe(ToolStats.AQUANIUM, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    aquanium_hoe = registerItem("aquanium_hoe", () -> new ItemModHoe(ToolStats.AQUANIUM, -2.9F)),
+
+            enderium_shovel = registerItem("enderium_shovel", () -> new ItemModShovel(ToolStats.ENDERIUM)),
+                    enderium_pickaxe = registerItem("enderium_pickaxe", () -> new ItemModPickaxe(ToolStats.ENDERIUM)),
+                    enderium_axe = registerItem("enderium_axe", () -> new ItemModAxe(ToolStats.ENDERIUM, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    enderium_hoe = registerItem("enderium_hoe", () -> new ItemModHoe(ToolStats.ENDERIUM, -2.9F)),
+
+            luminite_shovel = registerItem("luminite_shovel", () -> new ItemModShovel(ToolStats.LUMINITE)),
+                    luminite_pickaxe = registerItem("luminite_pickaxe", () -> new ItemModPickaxe(ToolStats.LUMINITE)),
+                    luminite_axe = registerItem("luminite_axe", () -> new ItemModAxe(ToolStats.LUMINITE, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    luminite_hoe = registerItem("luminite_hoe", () -> new ItemModHoe(ToolStats.LUMINITE, -2.9F)),
+
+            platinum_shovel = registerItem("platinum_shovel", () -> new ItemModShovel(ToolStats.PLATINUM)),
+                    platinum_pickaxe = registerItem("platinum_pickaxe", () -> new ItemModPickaxe(ToolStats.PLATINUM)),
+                    platinum_axe = registerItem("platinum_axe", () -> new ItemModAxe(ToolStats.PLATINUM, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    platinum_hoe = registerItem("platinum_hoe", () -> new ItemModHoe(ToolStats.PLATINUM, -2.9F)),
+
+            silver_shovel = registerItem("silver_shovel", () -> new ItemModShovel(ToolStats.SILVER)),
+                    silver_pickaxe = registerItem("silver_pickaxe", () -> new ItemModPickaxe(ToolStats.SILVER)),
+                    silver_axe = registerItem("silver_axe", () -> new ItemModAxe(ToolStats.SILVER, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    silver_hoe = registerItem("silver_hoe", () -> new ItemModHoe(ToolStats.SILVER, -2.9F)),
+
+            steel_shovel = registerItem("steel_shovel", () -> new ItemModShovel(ToolStats.STEEL)),
+                    steel_pickaxe = registerItem("steel_pickaxe", () -> new ItemModPickaxe(ToolStats.STEEL)),
+                    steel_axe = registerItem("steel_axe", () -> new ItemModAxe(ToolStats.STEEL, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    steel_hoe = registerItem("steel_hoe", () -> new ItemModHoe(ToolStats.STEEL, -2.9F)),
+
+            titanium_shovel = registerItem("titanium_shovel", () -> new ItemModShovel(ToolStats.TITANIUM)),
+                    titanium_pickaxe = registerItem("titanium_pickaxe", () -> new ItemModPickaxe(ToolStats.TITANIUM)),
+                    titanium_axe = registerItem("titanium_axe", () -> new ItemModAxe(ToolStats.TITANIUM, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    titanium_hoe = registerItem("titanium_hoe", () -> new ItemModHoe(ToolStats.TITANIUM, -2.9F)),
+
+            firerite_shovel = registerItem("firerite_shovel", () -> new ItemModShovel(ToolStats.FIRERITE)),
+                    firerite_pickaxe = registerItem("firerite_pickaxe", () -> new ItemModPickaxe(ToolStats.FIRERITE)),
+                    firerite_axe = registerItem("firerite_axe", () -> new ItemModAxe(ToolStats.FIRERITE, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    firerite_hoe = registerItem("firerite_hoe", () -> new ItemModHoe(ToolStats.FIRERITE, -2.9F)),
+
+            frozen_shovel = registerItem("frozen_shovel", () -> new ItemModShovel(ToolStats.FROZEN)),
+                    frozen_pickaxe = registerItem("frozen_pickaxe", () -> new ItemModPickaxe(ToolStats.FROZEN)),
+                    frozen_axe = registerItem("frozen_axe", () -> new ItemModAxe(ToolStats.FROZEN, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    frozen_hoe = registerItem("frozen_hoe", () -> new ItemModHoe(ToolStats.FROZEN, -2.9F)),
+
+            copper_shovel = registerItem("copper_shovel", () -> new ItemModShovel(ToolStats.COPPER)),
+                    copper_pickaxe = registerItem("copper_pickaxe", () -> new ItemModPickaxe(ToolStats.COPPER)),
+                    copper_axe = registerItem("copper_axe", () -> new ItemModAxe(ToolStats.COPPER, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
+                    copper_hoe = registerItem("copper_hoe", () -> new ItemModHoe(ToolStats.COPPER, -2.9F));
 
 
 

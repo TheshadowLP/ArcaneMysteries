@@ -44,7 +44,6 @@ public enum ArmorStats implements ArmorMaterial {
         this.equipSound = equipSound == null ? ARMOR_EQUIP_GENERIC : equipSound;
         this.repairIngredient = repairIngredient == null ? Ingredient.EMPTY : repairIngredient;
     }
-    public String getTextureLocation() {return textureLocation;}
     @Override public int getDurabilityForType(ArmorItem.@NotNull Type type) {
         if(type == ArmorItem.Type.HELMET) {
             return durability * 11;

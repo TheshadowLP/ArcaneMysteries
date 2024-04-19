@@ -51,8 +51,11 @@ public class CreativeTabRegistry {
         pOutput.accept(ItemRegistry.teleportation_staff.get());
         pOutput.accept(ItemRegistry.levitation_staff.get());
 
+        //TODO
         pOutput.accept(ItemRegistry.steel_helmet.get());
         pOutput.accept(ItemRegistry.copper_helmet.get());
+        pOutput.accept(ItemRegistry.aquanium_shovel.get());
+        pOutput.accept(ItemRegistry.aquanium_pickaxe.get());
     }).build());
 
 
