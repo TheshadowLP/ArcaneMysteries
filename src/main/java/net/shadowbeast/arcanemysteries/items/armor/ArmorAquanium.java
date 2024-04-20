@@ -21,7 +21,7 @@ import java.util.Map;
 public class ArmorAquanium extends ArmorItem {
     public static final Map<ArmorMaterial, MobEffectInstance> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<ArmorMaterial, MobEffectInstance>())
-                    .put(ArmorStats.AQUANIUM, new MobEffectInstance(MobEffects.DOLPHINS_GRACE/*PLACEHOLDER*/,
+                    .put(ArmorStats.AQUANIUM, new MobEffectInstance(MobEffects.DOLPHINS_GRACE,
                             200,
                             0, false, false, false)).build();
     private ArmorAquanium(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
@@ -49,7 +49,7 @@ public class ArmorAquanium extends ArmorItem {
         boolean hasPlayerEffect = player.hasEffect(pEffect.getEffect());
 
         if(hasCorrectArmorOn(player) && !hasPlayerEffect) {
-            // player.addEffect(pEffect); // Rewrite this code when we decided which effect we add for this armor
+            player.addEffect(pEffect);
         }
     }
     private boolean hasCorrectArmorOn(Player player) {
@@ -77,6 +77,7 @@ public class ArmorAquanium extends ArmorItem {
     }
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        tooltip.add(LocalizeUtils.i18n("tooltip.arcanemysteries.fullset"));
         tooltip.add(LocalizeUtils.i18n("tooltip.arcanemysteries.aquanium_fullset"));
     }
     public static ArmorAquanium getInstance(Type ptype) {

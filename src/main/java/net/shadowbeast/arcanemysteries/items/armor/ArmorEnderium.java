@@ -77,6 +77,7 @@ public class ArmorEnderium extends ArmorItem {
     }
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        tooltip.add(LocalizeUtils.i18n("tooltip.arcanemysteries.fullset"));
         tooltip.add(LocalizeUtils.i18n("tooltip.arcanemysteries.enderium_fullset"));
     }
     public static ArmorEnderium getInstance(Type ptype) {

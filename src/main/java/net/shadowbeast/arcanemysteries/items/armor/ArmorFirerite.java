@@ -76,6 +76,7 @@ public class ArmorFirerite extends ArmorItem {
     }
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        tooltip.add(LocalizeUtils.i18n("tooltip.arcanemysteries.fullset"));
         tooltip.add(LocalizeUtils.i18n("tooltip.arcanemysteries.firerite_fullset"));
     }
     public static ArmorFirerite getInstance(Type ptype) {

@@ -2,6 +2,7 @@ package net.shadowbeast.arcanemysteries.registries;
 
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.*;
+import net.shadowbeast.arcanemysteries.entities.boats.EntityBoat;
 import net.shadowbeast.arcanemysteries.enums.ArmorStats;
 import net.shadowbeast.arcanemysteries.enums.ToolStats;
 import net.shadowbeast.arcanemysteries.items.*;
@@ -9,15 +10,19 @@ import net.shadowbeast.arcanemysteries.items.armor.ArmorAquanium;
 import net.shadowbeast.arcanemysteries.items.armor.ArmorEnderium;
 import net.shadowbeast.arcanemysteries.items.armor.ArmorFirerite;
 import net.shadowbeast.arcanemysteries.items.armor.ArmorSteel;
+import net.shadowbeast.arcanemysteries.util.FoodList;
 
 import java.util.function.Supplier;
 
 import static net.shadowbeast.arcanemysteries.ArcaneMysteries.MODID;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
-    public static final RegistryObject<Item>
-            //MISC
-            titanium_saw_blade = registerItem("titanium_saw_blade", () -> new ItemSawBlade(new Item.Properties().stacksTo(1),28)), //Divide max by 9
+    public static final RegistryObject<Item> //TODO Signs / Seeds
+            //FOOD
+            kohlrabi = registerItem("kohlrabi", () -> new ItemModFood(FoodList.KOHLRABI)),
+            pepper = registerItem("pepper", () -> new ItemModFood(FoodList.PEPPER)),
+            stacked_potato = registerItem("stacked_potato", () -> new ItemModFood(FoodList.STACKED_POTATO)),
+            stacked_baked_potato = registerItem("stacked_baked_potato", () -> new ItemModFood(FoodList.STACKED_BAKED_POTATO)),
 
             //ORES
             raw_silver = registerItem("raw_silver"),
@@ -57,8 +62,8 @@ public class ItemRegistry {
             gold_stick = registerItem("gold_stick"),
             silver_stick = registerItem("silver_stick"),
             iron_plate = registerItem("iron_plate"),
-            saw_blade = registerItem("saw_blade"),
-            stronghold_compass = registerItem("stronghold_compass"),
+            titanium_saw_blade = registerItem("titanium_saw_blade", () -> new ItemSawBlade(new Item.Properties().stacksTo(1),28)), //Divide max by 9
+            stronghold_compass = registerItem("stronghold_compass",() -> new Item(new Item.Properties().stacksTo(1))),
             molten_sulfur_bucket = registerItem("molten_sulfur_bucket"),
 
             //DUSTS
@@ -72,6 +77,13 @@ public class ItemRegistry {
             sulfur_dust = registerItem("sulfur_dust"),
             titanium_dust = registerItem("titanium_dust"),
 
+            //PROJECTILES
+            mud_ball = registerItem("mud_ball", () -> new ItemMud(new Item.Properties())),
+
+            //ENTITIES
+            frozen_boat = registerItem("frozen_boat", () -> new ItemModBoat(false,EntityBoat.Type.FROZEN, new Item.Properties().stacksTo(1))),
+            frozen_chest_boat = registerItem("frozen_chest_boat", () -> new ItemModBoat(true,EntityBoat.Type.FROZEN, new Item.Properties().stacksTo(1))),
+
             //ADVANCED
             heal_staff = registerItem("heal_staff", ItemHealStaff::new),
             teleportation_staff = registerItem("teleportation_staff", ItemTeleportationStaff::new),
@@ -83,56 +95,19 @@ public class ItemRegistry {
             steel_hammer = registerItem("steel_hammer", () -> new ItemHammer(ToolStats.STEEL,6F,-3.4F, new Item.Properties().durability(1654))),
             titanium_hammer = registerItem("titanium_hammer", () -> new ItemHammer(ToolStats.TITANIUM,6F,-3.4F, new Item.Properties().durability(2240))),
 
-            //ARMOR
-            aquanium_helmet = registerItem("aquanium_helmet", () -> ArmorAquanium.getInstance(ArmorItem.Type.HELMET)),
-                    aquanium_chestplate = registerItem("aquanium_chestplate", () -> ArmorAquanium.getInstance(ArmorItem.Type.CHESTPLATE)),
-                    aquanium_leggings = registerItem("aquanium_leggings", () -> ArmorAquanium.getInstance(ArmorItem.Type.LEGGINGS)),
-                    aquanium_boots = registerItem("aquanium_boots", () -> ArmorAquanium.getInstance(ArmorItem.Type.BOOTS)),
+            //SHIELDS
+            aquanium_shield = registerItem("aquanium_shield", () -> new ShieldItem(new Item.Properties().durability(1105))),
+            enderium_shield = registerItem("enderium_shield", () -> new ShieldItem(new Item.Properties().durability(1265))),
+            luminite_shield = registerItem("luminite_shield", () -> new ShieldItem(new Item.Properties().durability(860))),
+            platinum_shield = registerItem("platinum_shield", () -> new ShieldItem(new Item.Properties().durability(225))),
+            silver_shield = registerItem("silver_shield", () -> new ShieldItem(new Item.Properties().durability(210))),
+            steel_shield = registerItem("steel_shield", () -> new ShieldItem(new Item.Properties().durability(500))),
+            titanium_shield = registerItem("titanium_shield", () -> new ShieldItem(new Item.Properties().durability(560))),
+            firerite_shield = registerItem("firerite_shield", () -> new ShieldItem(new Item.Properties().durability(890))),
+            frozen_shield = registerItem("frozen_shield", () -> new ShieldItem(new Item.Properties().durability(910))),
+            copper_shield = registerItem("copper_shield", () -> new ShieldItem(new Item.Properties().durability(185))),
+            gold_shield = registerItem("gold_shield", () -> new ShieldItem(new Item.Properties().durability(220))),
 
-            enderium_helmet = registerItem("enderium_helmet", () -> ArmorEnderium.getInstance(ArmorItem.Type.HELMET)),
-                    enderium_chestplate = registerItem("enderium_chestplate", () -> ArmorEnderium.getInstance(ArmorItem.Type.CHESTPLATE)),
-                    enderium_leggings = registerItem("enderium_leggings", () -> ArmorEnderium.getInstance(ArmorItem.Type.LEGGINGS)),
-                    enderium_boots = registerItem("enderium_boots", () -> ArmorEnderium.getInstance(ArmorItem.Type.BOOTS)),
-
-            luminite_helmet = registerItem("luminite_helmet", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.HELMET)),
-                    luminite_chestplate = registerItem("luminite_chestplate", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.CHESTPLATE)),
-                    luminite_leggings = registerItem("luminite_leggings", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.LEGGINGS)),
-                    luminite_boots = registerItem("luminite_boots", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.BOOTS)),
-
-            platinum_helmet = registerItem("platinum_helmet", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.HELMET)),
-                    platinum_chestplate = registerItem("platinum_chestplate", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.CHESTPLATE)),
-                    platinum_leggings = registerItem("platinum_leggings", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.LEGGINGS)),
-                    platinum_boots = registerItem("platinum_boots", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.BOOTS)),
-
-            silver_helmet = registerItem("silver_helmet", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.HELMET)),
-                    silver_chestplate = registerItem("silver_chestplate", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.CHESTPLATE)),
-                    silver_leggings = registerItem("silver_leggings", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.LEGGINGS)),
-                    silver_boots = registerItem("silver_boots", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.BOOTS)),
-
-            steel_helmet = registerItem("steel_helmet", () -> ArmorSteel.getInstance(ArmorItem.Type.HELMET)),
-                    steel_chestplate = registerItem("steel_chestplate", () -> ArmorSteel.getInstance(ArmorItem.Type.CHESTPLATE)),
-                    steel_leggings = registerItem("steel_leggings", () -> ArmorSteel.getInstance(ArmorItem.Type.LEGGINGS)),
-                    steel_boots = registerItem("steel_boots", () -> ArmorSteel.getInstance(ArmorItem.Type.BOOTS)),
-
-            titanium_helmet = registerItem("titanium_helmet", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.HELMET)),
-                    titanium_chestplate = registerItem("titanium_chestplate", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.CHESTPLATE)),
-                    titanium_leggings = registerItem("titanium_leggings", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.LEGGINGS)),
-                    titanium_boots = registerItem("titanium_boots", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.BOOTS)),
-
-            firerite_helmet = registerItem("firerite_helmet", () -> ArmorFirerite.getInstance(ArmorItem.Type.HELMET)),
-                    firerite_chestplate = registerItem("firerite_chestplate", () -> ArmorFirerite.getInstance(ArmorItem.Type.CHESTPLATE)),
-                    firerite_leggings = registerItem("firerite_leggings", () -> ArmorFirerite.getInstance(ArmorItem.Type.LEGGINGS)),
-                    firerite_boots = registerItem("firerite_boots", () -> ArmorFirerite.getInstance(ArmorItem.Type.BOOTS)),
-
-            frozen_helmet = registerItem("frozen_helmet", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.HELMET)),
-                    frozen_chestplate = registerItem("frozen_chestplate", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.CHESTPLATE)),
-                    frozen_leggings = registerItem("frozen_leggings", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.LEGGINGS)),
-                    frozen_boots = registerItem("frozen_boots", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.BOOTS)),
-
-            copper_helmet = registerItem("copper_helmet", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.HELMET)),
-                    copper_chestplate = registerItem("copper_chestplate", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.CHESTPLATE)),
-                    copper_leggings = registerItem("copper_leggings", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.LEGGINGS)),
-                    copper_boots = registerItem("copper_boots", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.BOOTS)),
 
             //SWORDS
             aquanium_sword = registerItem("aquanium_sword", () -> new ItemModSword(ToolStats.AQUANIUM)),
@@ -195,9 +170,58 @@ public class ItemRegistry {
             copper_shovel = registerItem("copper_shovel", () -> new ItemModShovel(ToolStats.COPPER)),
                     copper_pickaxe = registerItem("copper_pickaxe", () -> new ItemModPickaxe(ToolStats.COPPER)),
                     copper_axe = registerItem("copper_axe", () -> new ItemModAxe(ToolStats.COPPER, -2.9F)), //TODO SPEED AND DAMAGE MODIFIER
-                    copper_hoe = registerItem("copper_hoe", () -> new ItemModHoe(ToolStats.COPPER, -2.9F));
+                    copper_hoe = registerItem("copper_hoe", () -> new ItemModHoe(ToolStats.COPPER, -2.9F)),
 
+            //ARMOR
+            aquanium_helmet = registerItem("aquanium_helmet", () -> ArmorAquanium.getInstance(ArmorItem.Type.HELMET)),
+                    aquanium_chestplate = registerItem("aquanium_chestplate", () -> ArmorAquanium.getInstance(ArmorItem.Type.CHESTPLATE)),
+                    aquanium_leggings = registerItem("aquanium_leggings", () -> ArmorAquanium.getInstance(ArmorItem.Type.LEGGINGS)),
+                    aquanium_boots = registerItem("aquanium_boots", () -> ArmorAquanium.getInstance(ArmorItem.Type.BOOTS)),
 
+            enderium_helmet = registerItem("enderium_helmet", () -> ArmorEnderium.getInstance(ArmorItem.Type.HELMET)),
+                    enderium_chestplate = registerItem("enderium_chestplate", () -> ArmorEnderium.getInstance(ArmorItem.Type.CHESTPLATE)),
+                    enderium_leggings = registerItem("enderium_leggings", () -> ArmorEnderium.getInstance(ArmorItem.Type.LEGGINGS)),
+                    enderium_boots = registerItem("enderium_boots", () -> ArmorEnderium.getInstance(ArmorItem.Type.BOOTS)),
+
+            luminite_helmet = registerItem("luminite_helmet", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.HELMET)),
+                    luminite_chestplate = registerItem("luminite_chestplate", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.CHESTPLATE)),
+                    luminite_leggings = registerItem("luminite_leggings", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.LEGGINGS)),
+                    luminite_boots = registerItem("luminite_boots", () -> new ItemArmor(ArmorStats.LUMINITE, ArmorItem.Type.BOOTS)),
+
+            platinum_helmet = registerItem("platinum_helmet", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.HELMET)),
+                    platinum_chestplate = registerItem("platinum_chestplate", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.CHESTPLATE)),
+                    platinum_leggings = registerItem("platinum_leggings", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.LEGGINGS)),
+                    platinum_boots = registerItem("platinum_boots", () -> new ItemArmor(ArmorStats.PLATINUM, ArmorItem.Type.BOOTS)),
+
+            silver_helmet = registerItem("silver_helmet", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.HELMET)),
+                   silver_chestplate = registerItem("silver_chestplate", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.CHESTPLATE)),
+                   silver_leggings = registerItem("silver_leggings", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.LEGGINGS)),
+                   silver_boots = registerItem("silver_boots", () -> new ItemArmor(ArmorStats.SILVER, ArmorItem.Type.BOOTS)),
+
+            steel_helmet = registerItem("steel_helmet", () -> ArmorSteel.getInstance(ArmorItem.Type.HELMET)),
+                   steel_chestplate = registerItem("steel_chestplate", () -> ArmorSteel.getInstance(ArmorItem.Type.CHESTPLATE)),
+                   steel_leggings = registerItem("steel_leggings", () -> ArmorSteel.getInstance(ArmorItem.Type.LEGGINGS)),
+                   steel_boots = registerItem("steel_boots", () -> ArmorSteel.getInstance(ArmorItem.Type.BOOTS)),
+
+            titanium_helmet = registerItem("titanium_helmet", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.HELMET)),
+                   titanium_chestplate = registerItem("titanium_chestplate", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.CHESTPLATE)),
+                   titanium_leggings = registerItem("titanium_leggings", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.LEGGINGS)),
+                   titanium_boots = registerItem("titanium_boots", () -> new ItemArmor(ArmorStats.TITANIUM, ArmorItem.Type.BOOTS)),
+
+            firerite_helmet = registerItem("firerite_helmet", () -> ArmorFirerite.getInstance(ArmorItem.Type.HELMET)),
+                   firerite_chestplate = registerItem("firerite_chestplate", () -> ArmorFirerite.getInstance(ArmorItem.Type.CHESTPLATE)),
+                   firerite_leggings = registerItem("firerite_leggings", () -> ArmorFirerite.getInstance(ArmorItem.Type.LEGGINGS)),
+                   firerite_boots = registerItem("firerite_boots", () -> ArmorFirerite.getInstance(ArmorItem.Type.BOOTS)),
+
+            frozen_helmet = registerItem("frozen_helmet", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.HELMET)),
+                   frozen_chestplate = registerItem("frozen_chestplate", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.CHESTPLATE)),
+                   frozen_leggings = registerItem("frozen_leggings", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.LEGGINGS)),
+                   frozen_boots = registerItem("frozen_boots", () -> new ItemArmor(ArmorStats.FROZEN, ArmorItem.Type.BOOTS)),
+
+            copper_helmet = registerItem("copper_helmet", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.HELMET)),
+                   copper_chestplate = registerItem("copper_chestplate", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.CHESTPLATE)),
+                   copper_leggings = registerItem("copper_leggings", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.LEGGINGS)),
+                   copper_boots = registerItem("copper_boots", () -> new ItemArmor(ArmorStats.COPPER, ArmorItem.Type.BOOTS));
 
     private static RegistryObject<Item> registerItem(String registryId) {
         return ITEMS.register(registryId, ItemMod::new);

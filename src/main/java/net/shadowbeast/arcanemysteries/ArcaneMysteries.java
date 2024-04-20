@@ -1,5 +1,7 @@
 package net.shadowbeast.arcanemysteries;
 
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -8,7 +10,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.shadowbeast.arcanemysteries.client.BoatModRenderer;
+import net.shadowbeast.arcanemysteries.items.ItemModProperties;
 import net.shadowbeast.arcanemysteries.registries.CreativeTabRegistry;
+import net.shadowbeast.arcanemysteries.registries.EntityRegistry;
 import net.shadowbeast.arcanemysteries.registries.ItemRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,8 +25,11 @@ public class ArcaneMysteries {
     public ArcaneMysteries() {
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
         ItemRegistry.ITEMS.register(bus);
+        EntityRegistry.ENTITIES.register(bus);
         CreativeTabRegistry.TAB.register(bus);
 
+
+        bus.addListener(this::commonSetup);
         bus.addListener(this::addCreative);
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -35,7 +43,10 @@ public class ArcaneMysteries {
         }
         @SubscribeEvent
         public static void registerRenderers(FMLClientSetupEvent event) {
-
+            ItemModProperties.addCustomItemProperties();
+            EntityRenderers.register(EntityRegistry.MUDBALL_PROJECTILE.get(), ThrownItemRenderer::new);
+            EntityRenderers.register(EntityRegistry.MOD_BOAT.get(), pContext -> new BoatModRenderer(pContext, false));
+            EntityRenderers.register(EntityRegistry.MOD_CHEST_BOAT.get(), pContext -> new BoatModRenderer(pContext, true));
         }
     }
 }
